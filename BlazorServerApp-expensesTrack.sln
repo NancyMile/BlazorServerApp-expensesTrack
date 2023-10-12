@@ -5,6 +5,12 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerApp-expensesTrack.UI", "BlazorServerApp-expensesTrack.UI\BlazorServerApp-expensesTrack.UI.csproj", "{2DD97652-F6C5-4881-B814-33C2E96CF975}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorExpensesTracker.Model", "BlazorExpensesTracker.Model\BlazorExpensesTracker.Model.csproj", "{9464197F-109D-4B94-9639-DE372B2D50DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorExpensesTracker.Data", "BlazorExpensesTracker.Data\BlazorExpensesTracker.Data.csproj", "{D6C06553-9035-4C0C-9586-89DFF4394025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorExpensesTracker.API", "BlazorExpensesTracker.API\BlazorExpensesTracker.API.csproj", "{E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{2DD97652-F6C5-4881-B814-33C2E96CF975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD97652-F6C5-4881-B814-33C2E96CF975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD97652-F6C5-4881-B814-33C2E96CF975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9464197F-109D-4B94-9639-DE372B2D50DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9464197F-109D-4B94-9639-DE372B2D50DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9464197F-109D-4B94-9639-DE372B2D50DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9464197F-109D-4B94-9639-DE372B2D50DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6C06553-9035-4C0C-9586-89DFF4394025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C06553-9035-4C0C-9586-89DFF4394025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C06553-9035-4C0C-9586-89DFF4394025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6C06553-9035-4C0C-9586-89DFF4394025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
