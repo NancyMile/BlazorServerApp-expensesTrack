@@ -9,6 +9,12 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Inferfaces\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorExpensesTracker.Model\BlazorExpensesTracker.Model.csproj" />
   </ItemGroup>
 
 </Project>
