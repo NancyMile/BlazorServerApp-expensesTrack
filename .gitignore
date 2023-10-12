@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # BlazorExpensesTracker.API connection Stream
-appsettings.json
+/BlazorExpensesTracker.API/appsettings.json
