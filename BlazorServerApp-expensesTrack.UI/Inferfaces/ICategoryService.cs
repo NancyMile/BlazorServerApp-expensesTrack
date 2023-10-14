@@ -7,7 +7,7 @@ namespace BlazorServerApp_expensesTrack.UI.Inferfaces
 
         Task<IEnumerable<Category>> GetAllCategories();
         Task<Category> GetCategoryDetails(int id);
-        Task<bool> SaveCategory(Category category);
-        Task<bool> DeleteCategory(int id);
+        Task SaveCategory(Category category);
+        Task DeleteCategory(int id);
     }
 }

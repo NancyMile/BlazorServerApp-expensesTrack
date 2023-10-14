@@ -1,5 +1,7 @@
 ﻿using BlazorExpensesTracker.Model;
 using BlazorServerApp_expensesTrack.UI.Inferfaces;
+using System.Text;
+using System.Text.Json;
 
 namespace BlazorServerApp_expensesTrack.UI.Services
 {
@@ -11,24 +13,33 @@ namespace BlazorServerApp_expensesTrack.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<bool> DeleteCategory(int id)
+        public async Task DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            await _httpClient.DeleteAsync($"api/category{id}");
         }
 
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return await JsonSerializer.DeserializeAsync<IEnumerable<Category>>(
+                 await _httpClient.GetStreamAsync($"api/category"));
         }
 
         public async Task<Category> GetCategoryDetails(int id)
         {
-            throw new NotImplementedException();
+           return await JsonSerializer.DeserializeAsync<Category>(
+                await _httpClient.GetStreamAsync($"api/categorydetails"),
+                new JsonSerializerOptions(){ PropertyNameCaseInsensitive = true});
         }
 
         public async Task<bool> SaveCategory(Category category)
         {
-            throw new NotImplementedException();
+            var  categoryJson = new StringContent(JsonSerializer.Serialize(category),
+                Encoding.UTF8,"application/json");
+
+            if (category.Id == 0)
+                await _httpClient.PostAsync("api/category", categoryJson);
+            else
+                await _httpClient.PutAsync("api/caregory", categoryJson);
         }
     }
 }
