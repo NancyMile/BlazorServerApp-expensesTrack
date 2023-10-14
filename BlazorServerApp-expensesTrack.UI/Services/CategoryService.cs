@@ -31,7 +31,7 @@ namespace BlazorServerApp_expensesTrack.UI.Services
                 new JsonSerializerOptions(){ PropertyNameCaseInsensitive = true});
         }
 
-        public async Task<bool> SaveCategory(Category category)
+        public async Task SaveCategory(Category category)
         {
             var  categoryJson = new StringContent(JsonSerializer.Serialize(category),
                 Encoding.UTF8,"application/json");
