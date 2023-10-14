@@ -1,4 +1,5 @@
 
+using BlazorServerApp_expensesTrack.UI.Inferfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddHttpClient<ICategoryService, ICategoryService>(
+    client =>{ client.BaseAddress = new Uri("https://localhost:44324"); });
+
 
 var app = builder.Build();
 

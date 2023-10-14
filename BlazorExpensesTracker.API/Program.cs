@@ -1,4 +1,5 @@
 using BlazorExpensesTracker.Data;
+using BlazorExpensesTracker.Data.Repositories;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 //connect to db
 var sqlConnectionConfiguration = new SqlConfiguration(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddSingleton(sqlConnectionConfiguration);
+
+//inject categoryRepository to be able to access all methods
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

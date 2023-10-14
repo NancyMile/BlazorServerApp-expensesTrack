@@ -35,7 +35,7 @@ namespace BlazorExpensesTracker.Data.Repositories
 
             return result > 0;
         }
-    }
+    
 
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
