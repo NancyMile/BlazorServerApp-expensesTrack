@@ -1,7 +1,10 @@
-﻿using BlazorExpensesTracker.Data.Repositories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BlazorExpensesTracker.Data.Repositories;
 using BlazorExpensesTracker.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BlazorExpensesTracker.API.Controllers
 {
@@ -9,7 +12,6 @@ namespace BlazorExpensesTracker.API.Controllers
     [ApiController]
     public class CategoryController : Controller
     {
-        //inject interfas
         private readonly ICategoryRepository _categoryRepository;
 
         public CategoryController(ICategoryRepository categoryRepository)
@@ -24,9 +26,9 @@ namespace BlazorExpensesTracker.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategory(int id)
+        public async Task<IActionResult> GetCategoryDetails(int id)
         {
-            return Ok(await GetCategory(id));
+            return Ok(await _categoryRepository.GetCategoryDetails(id));
         }
 
         [HttpPost]
@@ -34,55 +36,48 @@ namespace BlazorExpensesTracker.API.Controllers
         {
             if (category == null)
                 return BadRequest();
-            
 
-            if (category.Name == string.Empty)
+            if (category.Name.Trim() == string.Empty)
             {
-                ModelState.AddModelError("Name","Category Name is required");
+                ModelState.AddModelError("Name", "Category Name shouldn't be empty");
             }
 
             if (!ModelState.IsValid)
-              return BadRequest(ModelState);
-            
+                return BadRequest(ModelState);
 
-           var created = await _categoryRepository.InsertCategory(category);
+            var created = await _categoryRepository.InsertCategory(category);
 
             return Created("created", created);
         }
 
         [HttpPut]
-
         public async Task<IActionResult> UpdateCategory([FromBody] Category category)
         {
             if (category == null)
-            {
                 return BadRequest();
-            }
 
-            if (category.Name == String.Empty)
+            if (category.Name.Trim() == string.Empty)
             {
-                ModelState.AddModelError("Name", "Name is required");
+                ModelState.AddModelError("Name", "Category name shouldn't be empty");
             }
 
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             await _categoryRepository.UpdateCategory(category);
-            return NoContent();
+
+            return NoContent(); //success
         }
 
-        [HttpDelete]
-
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             if (id == 0)
                 return BadRequest();
 
             await _categoryRepository.DeleteCategory(id);
-            return NoContent();
-        }
 
+            return NoContent(); //success
+        }
     }
 }

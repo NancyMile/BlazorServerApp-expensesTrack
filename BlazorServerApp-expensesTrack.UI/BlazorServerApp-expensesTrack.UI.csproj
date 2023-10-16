@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ChartJs.Blazor" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorExpensesTracker.API\BlazorExpensesTracker.API.csproj" />
+    <ProjectReference Include="..\BlazorExpensesTracker.Data\BlazorExpensesTracker.Data.csproj" />
     <ProjectReference Include="..\BlazorExpensesTracker.Model\BlazorExpensesTracker.Model.csproj" />
   </ItemGroup>
 

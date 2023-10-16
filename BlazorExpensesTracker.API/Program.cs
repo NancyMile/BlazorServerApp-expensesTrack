@@ -1,6 +1,11 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Configuration;
 using BlazorExpensesTracker.Data;
 using BlazorExpensesTracker.Data.Repositories;
-using System.Data;
+//using BlazorExpensesTracker.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,12 +16,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//connect to db
-var sqlConnectionConfiguration = new SqlConfiguration(builder.Configuration.GetConnectionString("DefaultConnection"));
-builder.Services.AddSingleton(sqlConnectionConfiguration);
-
-//inject categoryRepository to be able to access all methods
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+//builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
+
+var sqlConnectionConfiguration = new SqlConfiguration(builder.Configuration.GetConnectionString("SqlConnection"));
+builder.Services.AddSingleton(sqlConnectionConfiguration);
 
 var app = builder.Build();
 

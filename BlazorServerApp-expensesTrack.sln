@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerApp-expensesTrack.UI", "BlazorServerApp-expensesTrack.UI\BlazorServerApp-expensesTrack.UI.csproj", "{2DD97652-F6C5-4881-B814-33C2E96CF975}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D6C06553-9035-4C0C-9586-89DFF4394025} = {D6C06553-9035-4C0C-9586-89DFF4394025}
+		{E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D} = {E85A85C7-FE27-4A20-BDAE-3C6A9B4A0A6D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorExpensesTracker.Model", "BlazorExpensesTracker.Model\BlazorExpensesTracker.Model.csproj", "{9464197F-109D-4B94-9639-DE372B2D50DF}"
 EndProject

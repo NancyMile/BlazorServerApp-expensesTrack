@@ -1,7 +1,11 @@
-
 using BlazorServerApp_expensesTrack.UI.Inferfaces;
+using BlazorServerApp_expensesTrack.UI.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddHttpClient<ICategoryService, ICategoryService>(
-    client =>{ client.BaseAddress = new Uri("https://localhost:44324"); });
+//builder.Services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
 
+builder.Services.AddHttpClient<ICategoryService, CategoryService>(
+    client => { client.BaseAddress = new Uri("https://localhost:7052"); });
+
+//builder.Services.AddHttpClient<IExpenseService, ExpenseService>( 
+//   client => { client.BaseAddress = new Uri("https://localhost:7052"); });
 
 var app = builder.Build();
 
