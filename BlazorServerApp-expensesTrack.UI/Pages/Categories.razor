@@ -1,13 +1,17 @@
 ﻿@page "/categories"
 
 @using BlazorExpensesTracker.Model;
+@using BlazorServerApp_expensesTrack.UI.Inferfaces;
+@inject ICategoryService CategoryService;
 
 <h3>Categories</h3>
+
+<p>@Message</p>
 
 @if (categories == null)
 {
     <p> Loading ...</p>
-}else
+} else
 {
     <table>
         <thead>
@@ -24,17 +28,27 @@
                     </td>
                 </tr>
             }
-            
+
         </tbody>
-    </table>    
+    </table>
 }
 
 
 
 @code {
-    private IEnumerable<Category> categories = new List<Category>
+    public IEnumerable<Category> categories { get; set; }
+    public string Message { get; set; }
+
+    protected async override Task OnInitializedAsync()
     {
-        new Category { Id =1 , Name = "Shopping" },
-        new Category { Id =2 , Name = "Fuel" }
-    };
+        try
+        {
+            categories = await CategoryService.GetAllCategories();
+        }
+        catch (Exception ex)
+        {
+
+            Message = "Error: "+ex.Message;
+        }
+    }
 }
