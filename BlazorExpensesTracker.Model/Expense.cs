@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BlazorExpensesTracker.Model.validation;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,8 @@ namespace BlazorExpensesTracker.Model
 
         public Category category { get; set; }
 
+        [Required]
+        [ExpenseTransactionDateValidator(DaysInTheFuture = 30)]
         public DateTime Transactiondate { get; set; }
 
         public ExpenseType ExpenseType { get; set; }

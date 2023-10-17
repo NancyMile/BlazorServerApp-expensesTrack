@@ -5,6 +5,7 @@
 
 <h3>ExpenseDetails</h3>
 <EditForm Model="@expense">
+    <DataAnnotationsValidator/>
     <table class="table">
         <tr>
             <td>Amount:</td>
@@ -12,7 +13,10 @@
         </tr>
         <tr>
             <td>Transaction Date:</td>
-            <td><InputDate @bind-Value="@expense.Transactiondate"></InputDate></td>
+            <td>
+                <InputDate @bind-Value="@expense.Transactiondate"></InputDate>
+                <ValidationMessage For="@(()=> expense.Transactiondate)"/>
+            </td>
         </tr>
         <tr>
             <td>Category:</td>
