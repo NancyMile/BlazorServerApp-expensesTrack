@@ -9,11 +9,13 @@
     </TabTitle>
     <ChildContent>
         <TabPage Text="Expense" ImageSource="minus">
+            <ExpenseDetails ExpenseType="@BlazorExpensesTracker.Model.ExpenseType.Expense"></ExpenseDetails>
             <h3>
                 Amounts will be negative
             </h3>
         </TabPage>
         <TabPage Text="Income" ImageSource="add">
+            <ExpenseDetails ExpenseType="@BlazorExpensesTracker.Model.ExpenseType.Income"></ExpenseDetails>
             <h3>Anount Positive:</h3>
         </TabPage>
     </ChildContent>
