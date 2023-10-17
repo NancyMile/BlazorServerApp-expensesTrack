@@ -52,6 +52,7 @@
     protected async override Task OnInitializedAsync()
     {
         categories = await CategoryService.GetAllCategories();
+        expense.CategoryId = categories.FirstOrDefault().Id.ToString();
         expense.ExpenseType = ExpenseType;
     }
 
