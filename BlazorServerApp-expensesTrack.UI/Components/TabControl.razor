@@ -4,7 +4,15 @@
         <button type="button"
                 class=" btn @GetButtonClass(tabPage)"
                 @onclick=@(() => ActivatePage(tabPage))>
-            @tabPage.Text
+            
+              @if(TabTitle != null)
+              {
+                @TabTitle(tabPage)
+                }
+                else
+                {
+                    @tabPage.Text
+                }
         </button>
     }
 </div>
@@ -22,6 +30,10 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
+    [Parameter]
+    public RenderFragment<TabPage> TabTitle { get; set; }
+
+  
     //addPade  will seve the reference to the pages
     public TabPage ActivePage { get; set; }
 
