@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorExpensesTracker.Data.Repositories
 {
-    internal interface IExpenseRepository
+    public interface IExpenseRepository
     {
         Task<IEnumerable<Expense>> GetAllExpenses();
         Task<Expense> GetExpenseDetails(int id);

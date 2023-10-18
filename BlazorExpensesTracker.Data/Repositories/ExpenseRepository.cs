@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorExpensesTracker.Data.Repositories
 {
-    internal class ExpenseRepository : IExpenseRepository
+    public class ExpenseRepository : IExpenseRepository
     {
         private SqlConfiguration _connectionString;
 
