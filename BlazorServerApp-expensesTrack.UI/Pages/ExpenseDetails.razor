@@ -9,7 +9,10 @@
     <table class="table">
         <tr>
             <td>Amount:</td>
-            <td><InputNumber @bind-Value="@expense.Amount"></InputNumber></td>
+            <td>
+                <InputNumber @bind-Value="@expense.Amount"></InputNumber>
+                <ValidationMessage For="@(() => expense.Amount)"/>
+            </td>
         </tr>
         <tr>
             <td>Transaction Date:</td>
