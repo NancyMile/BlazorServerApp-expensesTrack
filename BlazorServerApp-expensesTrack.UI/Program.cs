@@ -18,8 +18,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient<ICategoryService, CategoryService>(
     client => { client.BaseAddress = new Uri("https://localhost:7052"); });
 
-//builder.Services.AddHttpClient<IExpenseService, ExpenseService>( 
-//   client => { client.BaseAddress = new Uri("https://localhost:7052"); });
+builder.Services.AddHttpClient<IExpenseService, ExpenseService>( 
+      client => { client.BaseAddress = new Uri("https://localhost:7052"); });
 
 var app = builder.Build();
 

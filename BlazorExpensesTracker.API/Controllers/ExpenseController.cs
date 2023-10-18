@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BlazorExpensesTracker.Data.Repositories
+using BlazorExpensesTracker.Data.Repositories;
 using BlazorExpensesTracker.Model;
 
 namespace BlazorExpensesTracker.API.Controllers
