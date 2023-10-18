@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace BlazorExpensesTracker.Model
 {
-    public class Expense : IValidatableObject
+    public class Expense
     {
         public int Id { get; set; }
+        [Required]
+        [Range(1, double.MaxValue,ErrorMessage = "Amounts needs to be greather than zero.")]
         public decimal Amount { get; set; }
+        [Required]
         public string CategoryId { get; set; }
 
         public Category category { get; set; }
@@ -22,21 +25,21 @@ namespace BlazorExpensesTracker.Model
 
         public ExpenseType ExpenseType { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            var errors = new List<ValidationResult>();
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    var errors = new List<ValidationResult>();
 
-            if (ExpenseType == ExpenseType.Income && Amount < 0)
-            {
-                errors.Add(new ValidationResult("Income  can't be lesser than zero.",
-                    new[] { nameof(Amount) }));
-            }
-            else if (ExpenseType == ExpenseType.Expense && Amount > 0)
-            {
-                errors.Add(new ValidationResult("Expenses can't  be greater than zero.",
-                    new[] {nameof(Amount)} ));
-            }
-            return errors;
-        }
+        //    if (ExpenseType == ExpenseType.Income && Amount < 0)
+        //    {
+        //        errors.Add(new ValidationResult("Income  can't be lesser than zero.",
+        //            new[] { nameof(Amount) }));
+        //    }
+        //    else if (ExpenseType == ExpenseType.Expense && Amount > 0)
+        //    {
+        //        errors.Add(new ValidationResult("Expenses can't  be greater than zero.",
+        //            new[] {nameof(Amount)} ));
+        //    }
+        //    return errors;
+        //}
     }
 }
