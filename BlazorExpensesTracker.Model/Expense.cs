@@ -21,7 +21,7 @@ namespace BlazorExpensesTracker.Model
 
         [Required]
         [ExpenseTransactionDateValidator(DaysInTheFuture = 30)]
-        public DateTime Transactiondate { get; set; }
+        public DateTime TransactionDate { get; set; }
 
         public ExpenseType ExpenseType { get; set; }
 
