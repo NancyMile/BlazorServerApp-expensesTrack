@@ -3,6 +3,7 @@
 @using BlazorServerApp_expensesTrack.UI.Inferfaces
 @inject ICategoryService CategoryService
 @inject IExpenseService ExpenseService
+@inject IJSRuntime JsRuntime;
 
 <h3>ExpenseDetails</h3>
 <EditForm Model="@expense" OnInvalidSubmit="SaveExpense">
@@ -103,7 +104,12 @@
 
     protected async Task DeleteExpense()
     {
-        await ExpenseService.DeleteExpense(expense.Id);
-        expense.SelectedExpenseChanged(expense);
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm","Are you sure?");
+        if (confirmed)
+        {
+            await ExpenseService.DeleteExpense(expense.Id);
+            expense.SelectedExpenseChanged(expense);
+            ClearExpense();
+        }
     }
 }
