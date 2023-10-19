@@ -44,6 +44,8 @@
                 <input type="submit" class="btn-success" value="@(expense.Id == 0 ? "Save" : "Update")"/>
                 <input type="button" class="btn-secondary" value="Cancel" style="@GetCancelButtonStyle()"
                 @onclick="Cancel"/>
+                <input type="submit" class="btn-danger" value="Delete" style="@GetCancelButtonStyle()" @onclick="DeleteExpense" />
+
             </td>
         </tr>
     </table>
@@ -97,5 +99,11 @@
         expense.TransactionDate = DateTime.MinValue;
         expense.CategoryId = categories.FirstOrDefault().Id.ToString();
         expense.ExpenseType = ExpenseType;
+    }
+
+    protected async Task DeleteExpense()
+    {
+        await ExpenseService.DeleteExpense(expense.Id);
+        expense.SelectedExpenseChanged(expense);
     }
 }
