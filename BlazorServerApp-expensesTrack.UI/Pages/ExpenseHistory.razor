@@ -1,0 +1,57 @@
+﻿@using BlazorExpensesTracker.Model
+@using BlazorServerApp_expensesTrack.UI.Inferfaces
+@inject IExpenseService ExpenseService
+
+
+<h3>ExpenseHistory</h3>
+<p>@Message</p>
+
+@if (expenses == null)
+{
+    <p>Loading ...</p>
+}else
+{
+    <table class="table table-bordered table-light table-hover">
+        <thead>
+            <td>Amount</td>
+            <td>Category</td>
+            <td>Date</td>
+        </thead>
+        <tbody>
+            @foreach (var expense in expenses)
+            {
+                <tr>
+                    <td style="@GetTextColor(expense.Id)">@expense.Amount</td>
+                    <td>@expense.Category</td>
+                    <td>@expense.TransactionDate.ToString("dd-MM-yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    public IEnumerable<Expense> expenses { get; set; }
+    public string Message { get; set; }
+
+    //set the object expenses  OnParameterSetAsync
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            expenses = (await ExpenseService.GetAllExpenses());
+        }
+        catch (Exception ex)
+        {
+
+            Message = "Error: " + ex.Message;
+        }
+    }
+
+    protected string GetTextColor(int expenseId)
+    {
+        var exp = expenses.FirstOrDefault(e => e.Id == expenseId);
+        return exp.ExpenseType == ExpenseType.Income ? "color:green" : "color:red";
+    }
+}
