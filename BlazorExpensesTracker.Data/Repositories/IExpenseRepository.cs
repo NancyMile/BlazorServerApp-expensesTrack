@@ -13,6 +13,6 @@ namespace BlazorExpensesTracker.Data.Repositories
         Task<Expense> GetExpenseDetails(int id);
         Task<bool> InsertExpenseDetails(Expense expense);
         Task<bool> UpdateExpense(Expense expense);
-        Task DeleteExpense(int id);
+        Task<bool> DeleteExpense(int id);
     }
 }

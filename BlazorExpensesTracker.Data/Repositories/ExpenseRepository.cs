@@ -55,6 +55,7 @@ namespace BlazorExpensesTracker.Data.Repositories
                         WHERE
                         Id = @Id ";
             var result = await db.QueryFirstOrDefaultAsync<Expense>(sql, new { Id = id});
+            return result;
         }
 
         public async Task<bool> InsertExpenseDetails(Expense expense)
