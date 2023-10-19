@@ -17,7 +17,7 @@ namespace BlazorExpensesTracker.Model
         [Required]
         public string CategoryId { get; set; }
 
-        public Category category { get; set; }
+        //public Category category { get; set; }
         public Category Category { get; set; }
         [Required]
         [ExpenseTransactionDateValidator(DaysInTheFuture = 30)]

@@ -2,9 +2,10 @@
 @using BlazorExpensesTracker.Model
 @using BlazorServerApp_expensesTrack.UI.Inferfaces
 @inject ICategoryService CategoryService
+@inject IExpenseService ExpenseService
 
 <h3>ExpenseDetails</h3>
-<EditForm Model="@expense">
+<EditForm Model="@expense" OnInvalidSubmit="SaveExpense">
     <DataAnnotationsValidator/>
     <table class="table">
         <tr>
@@ -61,6 +62,11 @@
         categories = await CategoryService.GetAllCategories();
         expense.CategoryId = categories.FirstOrDefault().Id.ToString();
         expense.ExpenseType = ExpenseType;
+    }
+
+    protected async Task SaveExpense()
+    {
+        await ExpenseService.SaveExpense(expense);
     }
 
 }

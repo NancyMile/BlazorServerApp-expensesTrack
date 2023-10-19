@@ -4,6 +4,8 @@ using BlazorExpensesTracker.Model;
 
 namespace BlazorExpensesTracker.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ExpenseController : Controller
     {
         private readonly IExpenseRepository _expenseRepository;

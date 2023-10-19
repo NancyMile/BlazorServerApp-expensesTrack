@@ -33,7 +33,7 @@ namespace BlazorExpensesTracker.Data.Repositories
         public async Task<IEnumerable<Expense>> GetAllExpenses()
         {
             var db = dbConnection();
-            var sql = @"SELECT e.Id, Amount, CatrgoryId, ExpenseType, Transactiondate,
+            var sql = @"SELECT e.Id, Amount, CategoryId, ExpenseType, TransactionDate,
                         c.Id, c.Name    
                         FROM Expenses e
                         INNER JOIN Categories c ON  e.CategoryId = c.Id ";
@@ -61,7 +61,7 @@ namespace BlazorExpensesTracker.Data.Repositories
         public async Task<bool> InsertExpenseDetails(Expense expense)
         {
             var db =dbConnection();
-            var sql = @"INSERT INTO Expense (Amount, CategoryId, ExpenseType, TransactionDate)
+            var sql = @"INSERT INTO Expenses (Amount, CategoryId, ExpenseType, TransactionDate)
                         VALUES(@Amount, @CategoryId, @ExpenseType, @TransactionDate) ";
             var result = await db.ExecuteAsync(sql,
                 new { expense.Amount, expense.CategoryId, expense.ExpenseType, expense.TransactionDate});
