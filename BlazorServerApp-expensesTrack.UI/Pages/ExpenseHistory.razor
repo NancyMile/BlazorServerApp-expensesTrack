@@ -20,7 +20,7 @@
         <tbody>
             @foreach (var expense in expenses)
             {
-                <tr>
+                <tr @onclick="@(()=>SelectedExpenseChange(expense.Id))">
                     <td style="@GetTextColor(expense.Id)">@expense.Amount</td>
                     <td>@expense.Category</td>
                     <td>@expense.TransactionDate.ToString("dd-MM-yyyy")</td>
@@ -34,6 +34,14 @@
 
     public IEnumerable<Expense> expenses { get; set; }
     public string Message { get; set; }
+    [CascadingParameter] protected Expense SelectedExpense { get; set;}
+
+    protected async Task SelectedExpenseChange(int expenseId)
+    {
+        var expense = await ExpenseService.GetExpenseDetails(expenseId);
+        SelectedExpense.SelectedExpenseChanged(expense);
+    }
+
 
     //set the object expenses  OnParameterSetAsync
     protected override async Task OnParametersSetAsync()

@@ -25,21 +25,21 @@ namespace BlazorExpensesTracker.Model
 
         public ExpenseType ExpenseType { get; set; }
 
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    var errors = new List<ValidationResult>();
+        public event Action OnSelectedExpenseChanged;
+        public void SelectedExpenseChanged(Expense expense)
+        {
+            Id = expense.Id;
+            Amount = expense.Amount;
+            CategoryId = expense.CategoryId;
+            ExpenseType = expense.ExpenseType;
+            TransactionDate = expense.TransactionDate;
+            NotifySelectedExpenseChanged();
+        }
 
-        //    if (ExpenseType == ExpenseType.Income && Amount < 0)
-        //    {
-        //        errors.Add(new ValidationResult("Income  can't be lesser than zero.",
-        //            new[] { nameof(Amount) }));
-        //    }
-        //    else if (ExpenseType == ExpenseType.Expense && Amount > 0)
-        //    {
-        //        errors.Add(new ValidationResult("Expenses can't  be greater than zero.",
-        //            new[] {nameof(Amount)} ));
-        //    }
-        //    return errors;
-        //}
+        private void NotifySelectedExpenseChanged()
+        {
+            OnSelectedExpenseChanged.Invoke();
+        }
+        
     }
 }
