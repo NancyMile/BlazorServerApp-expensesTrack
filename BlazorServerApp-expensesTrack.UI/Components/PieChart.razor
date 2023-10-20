@@ -6,8 +6,6 @@
 @using ChartJs.Blazor.ChartJS.Common.Properties;
 @using ChartJs.Blazor.ChartJS.PieChart;
 @inject IExpenseService ExpenseService
-
-<h3>PieChart</h3>
 <p>@Message</p>
 
 @if (expenses == null)
@@ -108,22 +106,23 @@ else
                         {
                             Amount = g.Sum(i => i.Amount)
                         }).FirstOrDefault().Amount;
-}
+    }
 
     protected decimal GetTotalIncome()
     {
-        return expenses
-                        .Where(c => c.ExpenseType == ExpenseType.Income)
-                        .GroupBy(i => 1)
-                        .Select(g => new
-                        {
-                            Amount = g.Sum(i => i.Amount)
-                        }).FirstOrDefault().Amount;
+        // return expenses
+        //                 .Where(c => c.ExpenseType == ExpenseType.Income)
+        //                 .GroupBy(i => 1)
+        //                 .Select(g => new
+        //                 {
+        //                     Amount = g.Sum(i => i.Amount)
+        //                 }).FirstOrDefault().Amount;
+        return 1;
     }
     protected decimal GetTotal()
     {
-        return GetTotalIncome() - GetTotalExpenses();
-
+        //return GetTotalIncome() - GetTotalExpenses();
+        return GetTotalExpenses();
     }
 
     protected string GetTotalColor()
